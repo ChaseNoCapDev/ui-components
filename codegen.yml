@@ -1,0 +1,42 @@
+overwrite: true
+schema: http://localhost:3000/graphql
+documents:
+  - "src/**/*.{ts,tsx}"
+  - "!src/generated/**/*"
+config:
+  skipDocumentsValidation: true
+generates:
+  src/generated/graphql.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+    config:
+      avoidOptionals: true
+      addTypename: true
+      skipTypename: true
+      strictScalars: true
+      scalars:
+        Date: string
+        DateTime: string
+        JSON: any
+        Repo__Any: any
+        Claude__Any: any
+        Repo_federation__ContextFieldValue: any
+        Claude_federation__ContextFieldValue: any
+        Repo_federation__FieldSet: string
+        Claude_federation__FieldSet: string
+        Repo_federation__Policy: string
+        Claude_federation__Policy: string
+        Repo_federation__Scope: string
+        Claude_federation__Scope: string
+        link__Import: string
+        Repo_link__Import: string
+        Claude_link__Import: string
+        federation__FieldSet: string
+        federation__Scope: string
+        federation__Policy: string
+  src/generated/introspection.json:
+    plugins:
+      - introspection
+    config:
+      minify: true
